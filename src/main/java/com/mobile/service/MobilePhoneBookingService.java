@@ -1,6 +1,9 @@
-package com.mobile;
+package com.mobile.service;
 
 
+import com.mobile.repository.MobilePhoneInventory;
+import com.mobile.entity.BookedBy;
+import com.mobile.entity.MobilePhone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.mobile;
+package com.mobile.entity;
 
 // BookedBy entity class
 public class BookedBy {

@@ -1,4 +1,4 @@
-package com.mobile;
+package com.mobile.entity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,5 +1,8 @@
 package com.mobile;
 
+import com.mobile.entity.BookedBy;
+import com.mobile.entity.MobilePhone;
+import com.mobile.service.MobilePhoneBookingService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +17,7 @@ public class MobileBookingTesting {
 
         @BeforeEach
         public void setUp() {
-            booking = new MobilePhoneBookingService();
+            booking = new MobilePhoneBookingService(null);
             user1 = new BookedBy("User 1");
             user2 = new BookedBy("User 2");
         }

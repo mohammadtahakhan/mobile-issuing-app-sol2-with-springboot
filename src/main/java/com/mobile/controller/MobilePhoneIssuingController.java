@@ -1,5 +1,8 @@
-package com.mobile;
+package com.mobile.controller;
 
+import com.mobile.entity.BookedBy;
+import com.mobile.entity.MobilePhone;
+import com.mobile.service.MobilePhoneBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,5 +1,7 @@
-package com.mobile;
+package com.mobile.repository;
 
+import com.mobile.entity.MobileModel;
+import com.mobile.entity.MobilePhone;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.mobile;
+package com.mobile.entity;
 
 // MobileModel entity class
 public class MobileModel {
