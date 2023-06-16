@@ -1,20 +1,14 @@
 package com.mobile.entity;
 
+import lombok.*;
+
 // MobileModel entity class
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MobileModel {
     private String name;
-
-    private MobileModel(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    // Factory method to create instances of Model
-    public static MobileModel createModel(String name) {
-        return new MobileModel(name);
-    }
 
 }

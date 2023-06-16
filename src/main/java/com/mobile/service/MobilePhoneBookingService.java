@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class MobilePhoneBookingService {
-    //@Autowired
+
     private MobilePhoneInventory inventory;
 
     @PostConstruct
@@ -27,6 +27,12 @@ public class MobilePhoneBookingService {
         this.inventory.initializePhones();
     }
 
+    /**This service method is to book a phone
+     *
+     * @param modelName
+     * @param bookedBy
+     * @return
+     */
     public String bookPhone(String modelName, BookedBy bookedBy) {
 
         String bookedPhoneId=null;
@@ -56,16 +62,6 @@ public class MobilePhoneBookingService {
     }
 
     public String returnPhone(String modelName) {
-      /*  List<MobilePhone> phones = inventory.getPhones();
-        for (MobilePhone phone : phones) {
-            if (phone.getModel().getName().equals(modelName) && !phone.isAvailable()) {
-                phone.returned();
-                System.out.println(modelName + " is returned");
-                return;
-            }
-        }
-        System.out.println("Phone not found for return: " + modelName);*/
-
         String returnedMobileId=null;
         MobilePhone bookedPhoneByModel = getBookedPhoneByModel(modelName);
         if (null!=bookedPhoneByModel){

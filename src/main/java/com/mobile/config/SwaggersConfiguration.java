@@ -15,7 +15,6 @@ import java.util.function.Predicate;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-//@EnableWebMvc
 @EnableSwagger2
 @Configuration
 public class SwaggersConfiguration {
