@@ -28,7 +28,7 @@ public class MobilePhoneIssuingController {
         BookedBy bookedByEntity = new BookedBy(bookedBy);
         String phoneId = bookingService.bookPhone(modelName, bookedByEntity);
         if (phoneId != null) {
-            return ResponseEntity.ok("Phone booked successfully. Phone ID: " + phoneId);
+            return ResponseEntity.ok("Phone booked successfully. Phone Model: " + modelName);
         } else {
             return ResponseEntity.badRequest().body("Phone not available for booking: " + modelName);
         }
@@ -37,17 +37,22 @@ public class MobilePhoneIssuingController {
     @PostMapping("/return/{modelName}")
     public ResponseEntity<String> returnPhone(@ApiParam(allowableValues = "Samsung Galaxy S9,Samsung Galaxy S8,Motorola Nexus 6,OnePlus 9,Apple iPhone 13,Apple iPhone 12,Apple iPhone 11,iPhone X,Nokia 3310") @RequestParam("modelName") String modelName) {
         // Parse the request parameter and call the booking service
-        bookingService.returnPhone(modelName);
-        return ResponseEntity.ok("Phone returned successfully: " + modelName);
+        String returnedPhoneId = bookingService.returnPhone(modelName);
+        if (returnedPhoneId!=null) {
+            return ResponseEntity.ok("Phone returned successfully phone model name: " + modelName);
+        }
+        else {
+            return ResponseEntity.ok("Invalid phone for return phone model name: " + modelName);
+        }
     }
 
-    @GetMapping("/availablephones")
+    @GetMapping("/availableList")
     public ResponseEntity<List<MobilePhone>> getAvailablePhones() {
         List<MobilePhone> availablePhones = bookingService.getAllAvailablePhones();
         return ResponseEntity.ok(availablePhones);
     }
 
-    @GetMapping("/bookedphones")
+    @GetMapping("/bookedList")
     public ResponseEntity<List<MobilePhone>> getBookedPhones() {
         List<MobilePhone> bookedPhones = bookingService.getAllBookedPhones();
         return ResponseEntity.ok(bookedPhones);

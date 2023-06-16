@@ -55,8 +55,8 @@ public class MobilePhoneBookingService {
         }
     }
 
-    public void returnPhone(String modelName) {
-        List<MobilePhone> phones = inventory.getPhones();
+    public String returnPhone(String modelName) {
+      /*  List<MobilePhone> phones = inventory.getPhones();
         for (MobilePhone phone : phones) {
             if (phone.getModel().getName().equals(modelName) && !phone.isAvailable()) {
                 phone.returned();
@@ -64,7 +64,22 @@ public class MobilePhoneBookingService {
                 return;
             }
         }
-        System.out.println("Phone not found for return: " + modelName);
+        System.out.println("Phone not found for return: " + modelName);*/
+
+        String returnedMobileId=null;
+        MobilePhone bookedPhoneByModel = getBookedPhoneByModel(modelName);
+        if (null!=bookedPhoneByModel){
+            returnSelectedMobile(bookedPhoneByModel);
+            returnedMobileId=bookedPhoneByModel.getId().toString();
+
+        }
+        else {
+            System.out.println("Invalid phone for return : " + modelName);
+        }
+
+        return returnedMobileId;
+
+
     }
 
     public MobilePhone getAvailablePhoneByModel(String modelName) {
@@ -76,6 +91,22 @@ public class MobilePhoneBookingService {
         }
         return null;
     }
+
+    public MobilePhone getBookedPhoneByModel(String modelName) {
+        List<MobilePhone> phones = inventory.getPhones();
+        for (MobilePhone phone : phones) {
+            if (phone.getModel().getName().replaceAll(" ","").equals(modelName) && !phone.isAvailable()) {
+                return phone;
+            }
+        }
+        return null;
+    }
+
+    private void returnSelectedMobile(MobilePhone bookedPhoneByModel) {
+     bookedPhoneByModel.returned();
+        System.out.println(bookedPhoneByModel.getModel().getName()+" Returned successfully");
+    }
+
 
     public List<MobilePhone> getAllBookedPhones() {
         List<MobilePhone> phones = inventory.getPhones();
