@@ -1,4 +1,4 @@
-# mobile-issuing-app-sol2-with-springboot
+# Mobile phone testing distribution system-sol2-with-springboot
 Solution-2 is a springboot microservice designed based on java object oriented principles and some design patterns
 solution-2, can be tested through multiple Rest API end points exposed, after cloning the code 
 swagger is configured for API testing and documentation. 
