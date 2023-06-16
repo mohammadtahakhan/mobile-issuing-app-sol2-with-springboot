@@ -2,22 +2,23 @@ package com.mobile.repository;
 
 import com.mobile.entity.MobileModel;
 import com.mobile.entity.MobilePhone;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // MobilePhoneInventory singleton class
-@Service
+@Component
 public class MobilePhoneInventory {
-    private static MobilePhoneInventory instance;
+    //private static MobilePhoneInventory instance;
     private List<MobilePhone> phones;
 
-    private MobilePhoneInventory() {
+    public MobilePhoneInventory() {
         phones = new ArrayList<>();
     }
 
-    public static MobilePhoneInventory getInstance() {
+/*    public static MobilePhoneInventory getInstance() {
         if (instance == null) {
 
             if (instance == null) {
@@ -26,7 +27,7 @@ public class MobilePhoneInventory {
 
         }
         return instance;
-    }
+    }*/
 
     public void initializePhones() {
         MobileModel samsungS9 = MobileModel.createModel("Samsung Galaxy S9");

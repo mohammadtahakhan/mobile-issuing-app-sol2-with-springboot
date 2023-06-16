@@ -4,21 +4,26 @@ package com.mobile.service;
 import com.mobile.repository.MobilePhoneInventory;
 import com.mobile.entity.BookedBy;
 import com.mobile.entity.MobilePhone;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 // MobilePhoneBooking class
-@Service
+@Component
+@AllArgsConstructor
 public class MobilePhoneBookingService {
+    //@Autowired
     private MobilePhoneInventory inventory;
 
-    @Autowired
-    public MobilePhoneBookingService(MobilePhoneInventory inventory) {
-        this.inventory = inventory;
+    @PostConstruct
+    public void initialize() {
         this.inventory.initializePhones();
     }
 
@@ -62,20 +67,10 @@ public class MobilePhoneBookingService {
         System.out.println("Phone not found for return: " + modelName);
     }
 
-    public MobilePhone getPhoneByModel(String modelName) {
-        List<MobilePhone> phones = inventory.getPhones();
-        for (MobilePhone phone : phones) {
-            if (phone.getModel().getName().equals(modelName)) {
-                return phone;
-            }
-        }
-        return null;
-    }
-
     public MobilePhone getAvailablePhoneByModel(String modelName) {
         List<MobilePhone> phones = inventory.getPhones();
         for (MobilePhone phone : phones) {
-            if (phone.getModel().getName().equals(modelName) && phone.isAvailable()) {
+            if (phone.getModel().getName().replaceAll(" ","").equals(modelName) && phone.isAvailable()) {
                 return phone;
             }
         }
@@ -99,16 +94,6 @@ public class MobilePhoneBookingService {
     public List<MobilePhone> getAllPhones() {
         return inventory.getPhones();
 
-    }
-
-    public MobilePhone getBookedPhoneByModel(String modelName) {
-        List<MobilePhone> phones = inventory.getPhones();
-        for (MobilePhone phone : phones) {
-            if (phone.getModel().getName().equals(modelName) && !phone.isAvailable()) {
-                return phone;
-            }
-        }
-        return null;
     }
 
     public MobilePhone getAvailablePhoneById(UUID mobilePhoneId) {
